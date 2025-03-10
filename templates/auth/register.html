@@ -6,12 +6,26 @@ Registro de Usuario
 
 {% block body %}
 <form action="" method="post">
+    {{form.hidden_tag()}}
+
+    {{form.username.label}}
+    {{form.username}}
+
+    {{form.password.label}}
+    {{form.password}}
+
+    {{form.submit}}
+
+</form>
+<!--
+<form action="" method="post">
     <label for="username">Usuario</label>
     <input type="text" name="username" id="username"/>
     <label for="password">Password</label>
     <input type="password" name="password" id="password"/>
     <input type="submit" value="Enviar"/>
 </form>
+-->
 
 {% if error %}
 <p style="color:red;">{{error}}</p>

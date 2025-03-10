@@ -2,9 +2,12 @@ from datetime import datetime
 from flask import Flask, render_template, request
 from markupsafe import escape
 
+from registerForm import RegisterForm
+
 # flask --app main  --debug run
 
 app = Flask(__name__)
+app.config.from_mapping(SECRET_KEY="MY_SECRET_KEY")
 
 
 # app.add_template_filter(format_date, 'format_date') => instead of @app.add_template_filter
@@ -54,6 +57,7 @@ def code(c):
     return f'<code>{escape(c)}</code>'
 
 
+'''
 @app.route('/auth/register', methods=['GET', 'POST'])
 def register_user():
     if request.method == 'GET':
@@ -67,3 +71,30 @@ def register_user():
             Password length must be greater than 6
             """
             return render_template('/auth/register.html', error=error)
+'''
+
+
+@app.route('/auth/register', methods=['GET', 'POST'])
+def register_user():
+    form = RegisterForm()
+
+    if request.method == 'POST':
+        '''
+         username = request.form['username']
+         password = request.form['password']
+ 
+         if len(username) < 6 or len(password) < 6:
+             error = """Username length must be greater than 6,
+                       Password length must be greater than 6
+                       """
+                       
+         return render_template('/auth/register.html', error=error, form=form)
+        '''
+
+        if form.validate_on_submit():
+            username = form.username.data
+            password = form.password.data
+            return render_template('/auth/register.html', form=form)
+
+
+    return render_template('/auth/register.html', form=form)
