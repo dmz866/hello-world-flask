@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Mi titulo 1
+{% endblock %}
+
+{% block body %}
+{% if name %}
+<h1>Hi {{name | upper}}</h1>
+{% else %}
+<h1>Hi</h1>
+{% endif %}
+
+<ul>
+    {% for f in friends | reverse %}
+    <li>{{f}}</li>
+    {% endfor %}
+</ul>
+
+<p>Today's date: {{date | format_date}}</p>
+
+<p>
+    Repeated phrase: {{repeat('Hi', 5)}}
+</p>
+
+{% endblock %}

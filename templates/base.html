@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('hello', name='David', age=34) }}">Hello</a>
+            <a href="{{ url_for('code', code = 'code1') }}">Code</a>
+            <a href="{{ url_for('register_user') }}">Registro</a>
+        </li>
+    </ul>
+</nav>
+{% block body %}
+{% endblock %}
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
